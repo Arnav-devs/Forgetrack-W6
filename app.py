@@ -66,6 +66,15 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+def fn(api_key1):
+    with open ("input_file.json","r") as f:
+        data = json.load(f)
+    
+    url = data[-1]["url"]
+    playlist_id = url.split("list=")[1]
+
+    video_data(playlist_id,api_key1)
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -85,17 +94,11 @@ def submit():
     dump_in_json("input_file.json",input_object)
 
     # Send them to the next page
+    
     return render_template("result.html", value1=input_url, value2=input_query)
 
-def fn(api_key1):
-    with open ("input_file.json","r") as f:
-        data = json.load(f)
-    
-    url = data[-1]["url"]
-    playlist_id = url.split("list=")[1]
 
-    video_data(playlist_id,api_key1)
-
+fn(api_key1)
 
 
 if __name__ == "__main__":

@@ -2,8 +2,7 @@ import requests
 import json
 
 def video_data(playlist_id,api_key2):
-  print(api_key2)
-  print(playlist_id)
+  
   token = None
   url = "https://www.googleapis.com/youtube/v3/playlistItems"
   videos_array = []
