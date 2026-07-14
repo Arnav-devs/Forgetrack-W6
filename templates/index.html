@@ -1,37 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>YouTube Search</title>
+    <title>Home</title>
 </head>
 <body>
 
-    <h2>YouTube Playlist Analyzer</h2>
+    <h2>Enter Details</h2>
 
-    <form action="/search" method="POST">
+    <form action="/submit" method="POST">
 
-        <label>Playlist URL</label><br>
-        <input
-            type="text"
-            name="playlist_url"
-            placeholder="Paste playlist URL"
-            size="60"
-        >
+        <label>First Input:</label><br>
+        <input type="text" name="input1"><br><br>
 
-        <br><br>
+        <label>Second Input:</label><br>
+        <input type="text" name="input2"><br><br>
 
-        <label>Search Query</label><br>
-        <input
-            type="text"
-            name="query"
-            placeholder="What do you want to learn?"
-            size="60"
-        >
-
-        <br><br>
-
-        <button type="submit">
-            Search
-        </button>
+        <button type="submit">Submit</button>
 
     </form>
 
