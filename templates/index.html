@@ -1,23 +1,386 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>YouTube Playlist AI Search</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0b0f14,#111827,#064e3b);
+    min-height:100vh;
+    padding:40px;
+}
+
+.container{
+    max-width:1050px;
+    margin:auto;
+    background:rgba(255,255,255,.96);
+    padding:40px;
+    border-radius:22px;
+    box-shadow:0 25px 60px rgba(0,0,0,.45);
+}
+
+h1{
+    text-align:center;
+    color:#d4af37;
+    font-size:38px;
+    margin-bottom:10px;
+    font-weight:700;
+}
+
+.subtitle{
+    text-align:center;
+    color:#555;
+    font-size:18px;
+    margin-bottom:35px;
+}
+
+form{
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:17px 20px;
+    border-radius:50px;
+    border:2px solid #d1d5db;
+    font-size:16px;
+    background:#fafafa;
+    transition:.3s;
+}
+
+input:focus{
+    outline:none;
+    border-color:#10b981;
+    box-shadow:0 0 15px rgba(16,185,129,.25);
+    background:white;
+}
+
+button{
+    width:100%;
+    padding:16px;
+    margin-top:15px;
+    border:none;
+    border-radius:50px;
+    background:linear-gradient(90deg,#047857,#10b981);
+    color:white;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 25px rgba(16,185,129,.35);
+    background:linear-gradient(90deg,#065f46,#059669);
+}
+
+.message{
+    margin-top:25px;
+    padding:18px;
+    background:#dcfce7;
+    color:#166534;
+    border-left:6px solid #10b981;
+    border-radius:12px;
+    text-align:center;
+    font-weight:600;
+}
+
+.section-title{
+    text-align:center;
+    color:#d4af37;
+    margin-top:45px;
+    margin-bottom:30px;
+    font-size:30px;
+}
+
+.card{
+    display:flex;
+    gap:20px;
+    align-items:center;
+    background:white;
+    padding:20px;
+    border-radius:18px;
+    margin-bottom:25px;
+    border-left:6px solid #10b981;
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+    transition:.35s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 35px rgba(0,0,0,.18);
+}
+
+.card img{
+    width:230px;
+    border-radius:14px;
+    object-fit:cover;
+    transition:.3s;
+}
+
+.card:hover img{
+    transform:scale(1.03);
+}
+
+.card-content{
+    flex:1;
+}
+
+.card-content h3{
+    color:#111827;
+    font-size:24px;
+    margin-bottom:12px;
+}
+
+.card-content p{
+    color:#4b5563;
+    line-height:1.7;
+    margin:8px 0;
+}
+
+.card-content b{
+    color:#111827;
+}
+
+.card-content a{
+    display:inline-block;
+    margin-top:15px;
+    padding:12px 24px;
+    border-radius:50px;
+    background:linear-gradient(90deg,#047857,#10b981);
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.card-content a:hover{
+    background:linear-gradient(90deg,#065f46,#059669);
+    transform:translateY(-2px);
+}
+
+.footer{
+    margin-top:45px;
+    text-align:center;
+    color:#6b7280;
+    border-top:1px solid #e5e7eb;
+    padding-top:20px;
+}
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#e5e7eb;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#10b981;
+    border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#047857;
+}
+
+@media(max-width:768px){
+
+    body{
+        padding:20px;
+    }
+
+    .container{
+        padding:25px;
+    }
+
+    h1{
+        font-size:30px;
+    }
+
+    .card{
+        flex-direction:column;
+    }
+
+    .card img{
+        width:100%;
+    }
+
+}
+</style>
+
 </head>
+
 <body>
 
-    <h2>Enter Details</h2>
+<div class="container">
 
-    <form action="/submit" method="POST">
+<h1>🎥 YouTube Playlist AI Search</h1>
 
-        <label>First Input:</label><br>
-        <input type="text" name="input1"><br><br>
+<p class="subtitle">
 
-        <label>Second Input:</label><br>
-        <input type="text" name="input2"><br><br>
+Paste any YouTube Playlist and search topics using AI Semantic Search.
 
-        <button type="submit">Submit</button>
+</p>
 
-    </form>
+<form method="POST">
+
+<input
+type="text"
+name="playlist_url"
+placeholder="Paste YouTube Playlist URL"
+value="{{ playlist_url }}"
+>
+
+<button type="submit">
+
+📥 Analyze Playlist
+
+</button>
+
+</form>
+
+<form method="POST">
+
+<input
+type="text"
+name="search_query"
+placeholder="Search any topic (Example: JavaScript Arrays)"
+>
+
+<button type="submit">
+
+🔍 AI Search
+
+</button>
+
+</form>
+
+{% if message %}
+
+<div class="message">
+
+{{ message }}
+
+</div>
+
+{% endif %}
+
+{% if videos %}
+
+<h2 class="section-title">
+
+Indexed Videos ({{ videos|length }})
+
+</h2>
+
+{% for video in videos %}
+
+<div class="card">
+
+<img src="{{ video.thumbnail }}" alt="Thumbnail">
+
+<div class="card-content">
+
+<h3>{{ video.title }}</h3>
+
+<p>
+
+<b>Channel:</b>
+
+{{ video.channel }}
+
+</p>
+
+<p>
+
+{{ video.description[:250] }}
+
+</p>
+
+<a
+href="{{ video.url }}"
+target="_blank"
+>
+
+▶ Watch Video
+
+</a>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+{% endif %}
+
+{% if search_results %}
+
+<h2 class="section-title">
+
+AI Search Results
+
+</h2>
+
+{% for video in search_results %}
+
+<div class="card">
+
+<img src="{{ video.thumbnail }}" alt="Thumbnail">
+
+<div class="card-content">
+
+<h3>{{ video.title }}</h3>
+
+<p>
+
+<b>Channel:</b>
+
+{{ video.channel }}
+
+</p>
+
+<p>
+
+{{ video.description[:250] }}
+
+</p>
+
+<a
+href="{{ video.url }}"
+target="_blank"
+>
+
+▶ Open Video
+
+</a>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+{% endif %}
+
+<div class="footer">
+using Flask, Gemini Embeddings, FAISS & YouTube API
+
+</div>
+
+</div>
 
 </body>
 </html>
