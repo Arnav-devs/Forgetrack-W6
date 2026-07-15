@@ -1,5 +1,7 @@
 # 🎥 YouTube Playlist Semantic Search
 
+DEPLOYED LINK - https://forgetrack-w6.onrender.com/
+
 A Flask-based web application that lets users search a YouTube playlist using **natural language** instead of exact keywords.
 
 The application fetches video metadata using the **YouTube Data API v3**, converts the metadata into **vector embeddings** using the **Google Gemini Embedding API**, stores them in a **FAISS vector database**, and returns the most relevant videos based on semantic similarity.
